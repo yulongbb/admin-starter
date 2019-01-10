@@ -34,17 +34,19 @@ export class HeaderComponent implements OnInit {
 
     this.menuService.onItemClick()
       .pipe(
-        filter(({ tag }) => tag === 'my-context-menu'),
-        map(({ item }) => item),
-      ).subscribe(item => {
-        console.log(item);
-        this.window.alert(`${item} was clicked!`);
-        if (item.title == '注销') {
-          setTimeout(() => {
-            this.router.navigate(["/auth/login"]);
-          }, 3000);
-        }
-      });
+      filter(({ tag }) => tag === 'my-context-menu'),
+      map(({ item }) => item),
+    ).subscribe(item => {
+      if (item.title == '注销') {
+        setTimeout(() => {
+          this.router.navigate(["/auth/login"]);
+        }, 3000);
+      } else if (item.title == '个人信息') {
+        this.router.navigate(["/pages/profile/overview"]);
+      } else if (item.title == '重置密码') {
+        this.router.navigate(["/auth/reset-password"]);
+      }
+    });
   }
 
   toggleSidebar(): boolean {
@@ -64,5 +66,9 @@ export class HeaderComponent implements OnInit {
 
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
+  }
+
+  notification(){
+     this.router.navigate(["/pages/profile/notification"]);
   }
 }

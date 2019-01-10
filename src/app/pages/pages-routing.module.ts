@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProfileComponent } from "./profile/profile.component";
 
 const routes: Routes = [{
   path: '',
@@ -13,10 +12,8 @@ const routes: Routes = [{
       path: 'dashboard',
       component: DashboardComponent,
     },
-    {
-      path: 'profile',
-      component: ProfileComponent,
-    },
+    { path: 'profile', loadChildren: 'app/pages/profile/profile.module#ProfileModule' },
+    { path: 'miscellaneous', loadChildren: 'app/pages/miscellaneous/miscellaneous.module#MiscellaneousModule' },
     {
       path: '',
       redirectTo: 'dashboard',

@@ -21,4 +21,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
+  {
+    title: '资源文档',
+    group: true,
+  },
+  {
+    title: 'ngx-admin',
+    url: 'https://akveo.github.io/nebular/docs/components/components-overview',
+    home: true,
+  },
 ];
