@@ -5,6 +5,8 @@ import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
 import { filter, map } from 'rxjs/operators';
 import { Router } from "@angular/router";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ReferenceComponent } from "../../../pages/reference/reference.component";
 
 
 @Component({
@@ -25,6 +27,7 @@ export class HeaderComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     @Inject(NB_WINDOW) private window,
+    private modalService: NgbModal,
     private analyticsService: AnalyticsService) {
   }
 
@@ -44,7 +47,9 @@ export class HeaderComponent implements OnInit {
       } else if (item.title == '个人信息') {
         this.router.navigate(["/pages/profile/overview"]);
       } else if (item.title == '重置密码') {
-        this.router.navigate(["/auth/reset-password"]);
+        this.router.navigate(["/pages/setting/account"]);
+      } else if (item.title == '设置') {
+        this.router.navigate(["/pages/setting/profile"]);
       }
     });
   }
@@ -68,7 +73,13 @@ export class HeaderComponent implements OnInit {
     this.analyticsService.trackEvent('startSearch');
   }
 
-  notification(){
-     this.router.navigate(["/pages/profile/notification"]);
+  notification() {
+    this.router.navigate(["/pages/profile/notification"]);
+  }
+
+  showLargeModal() {
+    const activeModal = this.modalService.open(ReferenceComponent, { size: 'lg', container: 'nb-layout' });
+
+    activeModal.componentInstance.modalHeader = '使用手册';
   }
 }

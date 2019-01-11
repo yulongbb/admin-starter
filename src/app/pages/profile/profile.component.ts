@@ -19,11 +19,7 @@ export class ProfileComponent implements OnInit {
     {
       title: '通知',
       route: '/pages/profile/notification',
-    },
-    {
-      title: '消息',
-      route: '/pages/profile/message',
-    },
+    }
   ];
 
 

@@ -12,7 +12,7 @@ export class LoginComponent extends NbLoginComponent {
   login() {
     this.messages = ["登录成功，即将进入系统！"];
     setTimeout(() => {
-      this.router.navigate(["/page/dashboard"]);
+      this.router.navigate(["/pages/dashboard"]);
     }, 3000);
   }
 }

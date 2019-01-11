@@ -6,9 +6,13 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { ProfileModule } from "./profile/profile.module";
+import { ReferenceComponent } from './reference/reference.component';
+import { ExampleComponent } from './example/example.component';
+import { SettingModule } from "./setting/setting.module";
 
 const PAGES_COMPONENTS = [
   PagesComponent,
+  ReferenceComponent,
 ];
 
 @NgModule({
@@ -18,9 +22,14 @@ const PAGES_COMPONENTS = [
     DashboardModule,
     MiscellaneousModule,
     ProfileModule,
+    SettingModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,
+    ExampleComponent,
+  ],
+  entryComponents: [
+    ReferenceComponent,
   ],
 })
 export class PagesModule {

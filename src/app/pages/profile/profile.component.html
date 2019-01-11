@@ -1,14 +1,29 @@
-<nb-card>
-  <nb-card-body>
-    <nb-user size="large" name="张三" title="管理员" picture="https://via.placeholder.com/50/4479e7/ffffff?Text=IMG">
-    </nb-user>
-  </nb-card-body>
-</nb-card>
+<div class="row">
+  
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">个人主页</li>
+      </ol>
+    </nav>
+  </div>
 
-<nb-card>
-  <nb-card-body>
-    <nb-route-tabset fullWidth [tabs]="tabs">
-    </nb-route-tabset>
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-body>
+        <nb-user size="large" name="张三" title="管理员" picture="https://via.placeholder.com/50/4479e7/ffffff?Text=IMG">
+        </nb-user>
+      </nb-card-body>
+    </nb-card>
+  </div>
 
-  </nb-card-body>
-</nb-card>
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-body>
+        <nb-route-tabset fullWidth [tabs]="tabs">
+        </nb-route-tabset>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+</div>

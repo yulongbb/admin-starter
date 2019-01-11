@@ -12,22 +12,27 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
-    title: '模块一',
+    title: '示例模块一',
     icon: 'nb-locked',
     children: [
       {
-        title: '功能1',
-        link: '/pages/dashboard',
+        title: '示例功能一',
+        link: '/pages/example',
       },
     ],
   },
   {
-    title: '资源文档',
+    title: '开发资源文档',
     group: true,
+  },
+  {
+    title: 'angular',
+    url: 'https://angular.cn/',
+    target: '_blank',
   },
   {
     title: 'ngx-admin',
     url: 'https://akveo.github.io/nebular/docs/components/components-overview',
-    home: true,
+    target: '_blank',
   },
 ];
