@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { NgxAuthRoutingModule } from './auth-routing.module';
 import { NbAuthModule } from '@nebular/auth';
-import { 
+import {
   NbAlertModule,
   NbButtonModule,
   NbCheckboxModule,
@@ -15,6 +15,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from "./register/register.component";
 import { RequestPasswordComponent } from "./request-password/request-password.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
+import { AuthComponent } from "./auth.component";
+import { ThemeModule } from "../@theme/theme.module";
 
 @NgModule({
   imports: [
@@ -28,9 +30,12 @@ import { ResetPasswordComponent } from "./reset-password/reset-password.componen
     NgxAuthRoutingModule,
 
     NbAuthModule,
+    ThemeModule.forRoot(),
+
   ],
   declarations: [
     // ... here goes our new components
+    AuthComponent,
     LoginComponent,
     RegisterComponent,
     RequestPasswordComponent,

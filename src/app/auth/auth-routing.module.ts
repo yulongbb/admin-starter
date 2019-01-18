@@ -6,12 +6,13 @@ import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 import { RequestPasswordComponent } from "./request-password/request-password.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
+import { AuthComponent } from "./auth.component";
 
 export const routes: Routes = [
     // .. here goes our components routes
     {
         path: '',
-        component: NbAuthComponent,
+        component: AuthComponent,
         children: [
             {
                 path: 'login',
