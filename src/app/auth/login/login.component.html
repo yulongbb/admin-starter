@@ -1,88 +1,64 @@
-<h1 id="title" class="title">大数据管理后台模板登录</h1>
-<p class="sub-title">欢迎进入</p>
+<div class="login">
 
-<nb-alert *ngIf="showMessages.error && errors?.length && !submitted" outline="danger" role="alert">
-  <p class="alert-title"><b>Oh snap!</b></p>
-  <ul class="alert-message-list">
-    <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
-  </ul>
-</nb-alert>
+  <h1 id="title" class="title">登录</h1>
 
-<nb-alert *ngIf="showMessages.success && messages?.length && !submitted" outline="success" role="alert">
-  <p class="alert-title"><b>恭喜你!</b></p>
-  <ul class="alert-message-list">
-    <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
-  </ul>
-</nb-alert>
+  <nb-alert *ngIf="showMessages.error && errors?.length && !submitted" outline="danger" role="alert">
+    <p class="alert-title"><b>Oh snap!</b></p>
+    <ul class="alert-message-list">
+      <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+    </ul>
+  </nb-alert>
 
-<form (ngSubmit)="login()" #form="ngForm" aria-labelledby="title">
+  <nb-alert *ngIf="showMessages.success && messages?.length && !submitted" outline="success" role="alert">
+    <p class="alert-title"><b>恭喜你!</b></p>
+    <ul class="alert-message-list">
+      <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+    </ul>
+  </nb-alert>
 
-  <div class="form-control-group">
-    <label class="label" for="input-email">电子邮箱:</label>
-    <input nbInput
-           fullWidth
-           [(ngModel)]="user.email"
-           #email="ngModel"
-           name="email"
-           id="input-email"
-           pattern=".+@.+\..+"
-           placeholder="电子邮箱"
-           autofocus
-           [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : ''"
-           [required]="getConfigValue('forms.validation.email.required')"
-           [attr.aria-invalid]="email.invalid && email.touched ? true : null">
-    <ng-container *ngIf="email.invalid && email.touched">
-      <p class="error-message" *ngIf="email.errors?.required">
-        电子邮箱不能为空！
-      </p>
-      <p class="error-message" *ngIf="email.errors?.pattern">
-        电子邮箱格式不正确！
-      </p>
-    </ng-container>
-  </div>
+  <form (ngSubmit)="login()" #form="ngForm" aria-labelledby="title">
 
-  <div class="form-control-group">
-    <label class="label" for="input-password">密码:</label>
-    <input nbInput
-           fullWidth
-           [(ngModel)]="user.password"
-           #password="ngModel"
-           name="password"
-           type="password"
-           id="input-password"
-           placeholder="密码"
-           [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : ''"
-           [required]="getConfigValue('forms.validation.password.required')"
-           [minlength]="getConfigValue('forms.validation.password.minLength')"
-           [maxlength]="getConfigValue('forms.validation.password.maxLength')"
-           [attr.aria-invalid]="password.invalid && password.touched ? true : null">
-    <ng-container *ngIf="password.invalid && password.touched ">
-      <p class="error-message" *ngIf="password.errors?.required">
-        密码不能为空！
-      </p>
-      <p class="error-message" *ngIf="password.errors?.minlength || password.errors?.maxlength">
-        密码必须为
-        从 {{ getConfigValue('forms.validation.password.minLength') }}
-        到 {{ getConfigValue('forms.validation.password.maxLength') }}
-        个字符！
-      </p>
-    </ng-container>
-  </div>
+    <div class="form-control-group">
+      <label class="label" for="input-username">用户名:</label>
+      <input nbInput fullWidth [(ngModel)]="user.username" #username="ngModel" name="username" id="input-username" pattern="^[a-zA-Z]{1}[-_a-zA-Z0-9]{4,19}$"
+        placeholder="用户名" autofocus [status]="username.dirty ? (username.invalid  ? 'danger' : 'success') : ''" [required]="true"
+        [attr.aria-invalid]="username.invalid && username.touched ? true : null">
+      <ng-container *ngIf="username.invalid && username.touched">
+        <p class="error-message" *ngIf="username.errors?.required">
+          用户名不能为空！
+        </p>
+        <p class="error-message" *ngIf="username.errors?.pattern">
+          用户名必须以字母开头，可以使用5~20个字母、数字、下划线和减号。
+        </p>
+      </ng-container>
+    </div>
 
-  <div class="form-control-group accept-group">
-    <nb-checkbox name="rememberMe" [(ngModel)]="user.rememberMe" *ngIf="rememberMe">记住我</nb-checkbox>
-    <a class="forgot-password" routerLink="../request-password">忘记密码?</a>
-  </div>
+    <div class="form-control-group">
+      <label class="label" for="input-password">密码:</label>
+      <input nbInput fullWidth [(ngModel)]="user.password" #password="ngModel" name="password" type="password" id="input-password"
+        placeholder="密码" [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : ''" [required]="true" [minlength]="4"
+        [maxlength]="50" [attr.aria-invalid]="password.invalid && password.touched ? true : null">
+      <ng-container *ngIf="password.invalid && password.touched ">
+        <p class="error-message" *ngIf="password.errors?.required">
+          密码不能为空！
+        </p>
+        <p class="error-message" *ngIf="password.errors?.minlength || password.errors?.maxlength">
+          密码必须为 从 4 到 50 个字符！
+        </p>
+      </ng-container>
+    </div>
 
-  <button nbButton
-          fullWidth
-          status="success"
-          [disabled]="submitted || !form.valid"
-          [class.btn-pulse]="submitted">
+    <div class="form-control-group">
+      <div id="captcha" style="position: relative" class="captcha"></div>
+      <div id="msg"></div>
+    </div>
+
+    <div class="form-control-group accept-group">
+      <nb-checkbox name="rememberMe" [(ngModel)]="user.rememberMe" *ngIf="rememberMe">记住我</nb-checkbox>
+    </div>
+
+    <button nbButton fullWidth status="success" [disabled]="submitted || !form.valid" [class.btn-pulse]="submitted">
     登录
   </button>
-</form>
-
-<section class="another-action" aria-label="Register">
-  还没有账号? <a class="text-link" routerLink="../register">注册一个账号</a>
-</section>
+  </form>
+</div>
