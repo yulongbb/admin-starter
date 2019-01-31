@@ -7,6 +7,7 @@ import { RegisterComponent } from "./register/register.component";
 import { RequestPasswordComponent } from "./request-password/request-password.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 import { AuthComponent } from "./auth.component";
+import { LogoutComponent } from "./logout/logout.component";
 
 export const routes: Routes = [
     // .. here goes our components routes
@@ -17,6 +18,10 @@ export const routes: Routes = [
             {
                 path: 'login',
                 component: LoginComponent, // <---
+            },
+            {
+                path: 'logout',
+                component: LogoutComponent, // <---
             },
             {
                 path: 'register',
@@ -31,7 +36,6 @@ export const routes: Routes = [
                 component: ResetPasswordComponent, // <---
             },
             { path: '', redirectTo: 'login', pathMatch: 'full' },
-
         ],
     },
 ];

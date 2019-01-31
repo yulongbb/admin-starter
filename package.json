@@ -17,7 +17,7 @@
   "scripts": {
     "ng": "ng",
     "conventional-changelog": "conventional-changelog",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "build:prod": "npm run build -- --prod --aot",
     "test": "ng test",
@@ -50,6 +50,8 @@
     "@nebular/security": "3.0.0",
     "@nebular/theme": "3.0.0",
     "@ng-bootstrap/ng-bootstrap": "^4.0.0",
+    "ag-grid-angular": "^20.0.0",
+    "ag-grid-community": "^20.0.0",
     "bootstrap": "4.1.2",
     "classlist.js": "1.1.20150312",
     "core-js": "2.5.1",

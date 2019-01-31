@@ -3,7 +3,7 @@
   <h1 id="title" class="title">登录</h1>
 
   <nb-alert *ngIf="showMessages.error && errors?.length && !submitted" outline="danger" role="alert">
-    <p class="alert-title"><b>Oh snap!</b></p>
+    <p class="alert-title"><b>不好意思!</b></p>
     <ul class="alert-message-list">
       <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
     </ul>
@@ -20,7 +20,7 @@
 
     <div class="form-control-group">
       <label class="label" for="input-username">用户名:</label>
-      <input nbInput fullWidth [(ngModel)]="user.username" #username="ngModel" name="username" id="input-username" pattern="^[a-zA-Z]{1}[-_a-zA-Z0-9]{4,19}$"
+      <input nbInput fullWidth [(ngModel)]="user.username" #username="ngModel" name="username" id="input-username" pattern="^[a-zA-Z]{1}[@.-_a-zA-Z0-9]{4,19}$"
         placeholder="用户名" autofocus [status]="username.dirty ? (username.invalid  ? 'danger' : 'success') : ''" [required]="true"
         [attr.aria-invalid]="username.invalid && username.touched ? true : null">
       <ng-container *ngIf="username.invalid && username.touched">

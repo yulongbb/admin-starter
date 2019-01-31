@@ -7,6 +7,8 @@ import { filter, map } from 'rxjs/operators';
 import { Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ReferenceComponent } from "../../../pages/reference/reference.component";
+import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
+import { HttpHeaders } from "@angular/common/http";
 
 
 @Component({
@@ -18,7 +20,12 @@ export class HeaderComponent implements OnInit {
 
   @Input() position = 'normal';
 
+  token: any;
+  private httpOptions = {};
+
   user: any;
+
+
 
   userMenu: any;
 
@@ -28,7 +35,20 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     @Inject(NB_WINDOW) private window,
     private modalService: NgbModal,
-    private analyticsService: AnalyticsService) {
+    private analyticsService: AnalyticsService,
+    private authService: NbAuthService) {
+    this.authService.onTokenChange()
+      .subscribe((token: NbAuthJWTToken) => {
+        if (token.isValid()) {
+          this.token = token.getValue(); // here we receive a payload from the token and assigne it to our `user` variable 
+          this.httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + this.token
+            })
+          }
+        }
+      });
   }
 
   ngOnInit() {
@@ -41,9 +61,7 @@ export class HeaderComponent implements OnInit {
       map(({ item }) => item),
     ).subscribe(item => {
       if (item.title == '注销') {
-        setTimeout(() => {
-          this.router.navigate(["/auth/login"]);
-        }, 3000);
+        this.router.navigate(["/auth/logout"]);
       } else if (item.title == '个人信息') {
         this.router.navigate(["/pages/profile/overview"]);
       } else if (item.title == '重置密码') {

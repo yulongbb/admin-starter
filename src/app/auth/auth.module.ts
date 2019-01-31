@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { NgxAuthRoutingModule } from './auth-routing.module';
-import { NbAuthModule } from '@nebular/auth';
+import { NbAuthModule, NbPasswordAuthStrategy, NbAuthJWTToken } from '@nebular/auth';
 import {
   NbAlertModule,
   NbButtonModule,
@@ -17,6 +17,7 @@ import { RequestPasswordComponent } from "./request-password/request-password.co
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 import { AuthComponent } from "./auth.component";
 import { ThemeModule } from "../@theme/theme.module";
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   imports: [
@@ -29,17 +30,32 @@ import { ThemeModule } from "../@theme/theme.module";
     NbCheckboxModule,
     NgxAuthRoutingModule,
 
-    NbAuthModule,
+    NbAuthModule.forRoot({
+      strategies: [
+        NbPasswordAuthStrategy.setup({
+          name: 'email',
+          baseEndpoint: 'http://127.0.0.1:8080/api',
+          login: {
+            endpoint: '/login',
+          },
+          token: {
+            class: NbAuthJWTToken,
+          }
+        }),
+      ],
+      forms: {},
+    }),
+
     ThemeModule.forRoot(),
 
   ],
   declarations: [
-    // ... here goes our new components
     AuthComponent,
     LoginComponent,
     RegisterComponent,
     RequestPasswordComponent,
     ResetPasswordComponent,
+    LogoutComponent,
   ],
 })
 export class NgxAuthModule {

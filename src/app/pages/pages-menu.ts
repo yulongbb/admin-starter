@@ -22,6 +22,24 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: '认证和授权',
+    group: true,
+  },
+  {
+    title: '认证和授权',
+    icon: 'nb-locked',
+    children: [
+      {
+        title: '用户',
+        link: '/pages/auth/user',
+      },
+      {
+        title: '组',
+        link: '/pages/auth/group',
+      },
+    ],
+  },
+  {
     title: '开发资源文档',
     group: true,
   },

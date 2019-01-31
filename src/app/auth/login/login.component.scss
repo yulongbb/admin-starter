@@ -1,7 +1,7 @@
 .login{
     width: 500px;
     min-height: 400px;
-    margin: 0 auto;
+    margin: 100px auto;
     padding: 20px;
     border-radius: 2px;
     background-color: #fff;
@@ -9,12 +9,16 @@
     .title{
         text-align: center;
         color: #5a6175;
+        font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif CJK', 'Source Han Serif SC', 'Source Han Serif CN', 'Source Han Serif', 'source-han-serif-sc', serif;
+
     }
 
     .label{
         color: #5a6175;
         font-weight: 600;
         margin-top: 20px;
+        font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif CJK', 'Source Han Serif SC', 'Source Han Serif CN', 'Source Han Serif', 'source-han-serif-sc', serif;
+
     }
 
     input{
@@ -34,6 +38,7 @@
     }
 
     button{
+        height: 60px;
         border: none;
         border-radius: 0;
     }

@@ -9,6 +9,7 @@ import { ProfileModule } from "./profile/profile.module";
 import { ReferenceComponent } from './reference/reference.component';
 import { ExampleComponent } from './example/example.component';
 import { SettingModule } from "./setting/setting.module";
+import { AuthModule } from "./auth/auth.module";
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -23,6 +24,7 @@ const PAGES_COMPONENTS = [
     MiscellaneousModule,
     ProfileModule,
     SettingModule,
+    AuthModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

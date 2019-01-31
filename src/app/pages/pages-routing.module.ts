@@ -21,6 +21,7 @@ const routes: Routes = [{
       path: 'example',
       component: ExampleComponent,
     },
+    { path: 'auth', loadChildren: 'app/pages/auth/auth.module#AuthModule' },
     {
       path: '',
       redirectTo: 'dashboard',
