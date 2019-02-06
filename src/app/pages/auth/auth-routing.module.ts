@@ -5,6 +5,7 @@ import { NbAuthComponent } from '@nebular/auth';
 import { AuthComponent } from "./auth.component";
 import { UserComponent } from "./user/user.component";
 import { GroupComponent } from "./group/group.component";
+import { UserChangeComponent } from "./user/change/change.component";
 
 export const routes: Routes = [
     // .. here goes our components routes
@@ -15,6 +16,10 @@ export const routes: Routes = [
             {
                 path: 'user',
                 component: UserComponent, // <---
+            },
+            {
+                path: 'user/:id/change',
+                component: UserChangeComponent, // <---
             },
             {
                 path: 'group',

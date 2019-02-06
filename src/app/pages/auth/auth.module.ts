@@ -17,6 +17,7 @@ import { UserComponent } from './user/user.component';
 import { GroupComponent } from './group/group.component';
 import { AuthService } from "./auth.service";
 import { AgGridModule } from 'ag-grid-angular';
+import { UserChangeComponent } from './user/change/change.component';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { AgGridModule } from 'ag-grid-angular';
     AuthComponent,
     UserComponent,
     GroupComponent,
+    UserChangeComponent,
   ],
   providers: [
     AuthService
