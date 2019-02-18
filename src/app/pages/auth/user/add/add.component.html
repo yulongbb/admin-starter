@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/pages/auth/user']">用户</a></li>
+        <li class="breadcrumb-item active" aria-current="page">新增用户</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>
+        新增用户
+      </nb-card-header>
+      <nb-card-body>
+        <p>首先，输入一个用户名和密码。然后，你就可以编辑更多的用户选项。</p>
+        <form  [formGroup]="addForm" (ngSubmit)="onSubmit(addForm.value)">
+          <div class="form-group row">
+            <label for="username" class="col-sm-2 col-form-label">用户名</label>
+            <div class="col-sm-4">
+              <input type="email" class="form-control" id="username" placeholder="用户名" [(ngModel)]="username" formControlName="username">
+              <p><small>必填。150个字符或者更少。包含字母，数字和仅有的@/./+/-/_符号。</small></p>
+            </div>
+          </div>
+          <hr>
+          <div class="form-group row">
+            <label for="password" class="col-sm-2 col-form-label">密码</label>
+            <div class="col-sm-4">
+              <input type="password" class="form-control" id="password" placeholder="密码" [(ngModel)]="password" formControlName="password">
+              <p><small>你的密码不能与其他个人信息太相似。</small></p>
+              <p><small>你的密码必须包含至少 8 个字符。</small></p>
+              <p><small>你的密码不能是大家都爱用的常见密码。</small></p>
+              <p><small>你的密码不能全部为数字。</small></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <hr>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="confirmPassword" class="col-sm-2 col-form-label">确认密码</label>
+            <div class="col-sm-4">
+              <input type="confirmPassword" class="form-control" id="confirmPassword" placeholder="确认密码"  [(ngModel)]="confirmPassword" formControlName="confirmPassword">
+              <p><small>为了校验，请输入与上面相同的密码。</small></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <hr>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="float-right">
+              <button type="submit" class="btn btn-primary mr-2">保存并继续编辑</button>
+            </div>
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

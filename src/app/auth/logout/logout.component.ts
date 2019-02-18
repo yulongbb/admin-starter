@@ -10,9 +10,11 @@ export class LogoutComponent extends NbLogoutComponent implements OnInit {
 
 
   ngOnInit() {
+    localStorage.removeItem('currentUser');
     localStorage.removeItem('auth_app_token');
     
     this.router.navigateByUrl('/auth/login');
+    location.reload();
   }
 
 }

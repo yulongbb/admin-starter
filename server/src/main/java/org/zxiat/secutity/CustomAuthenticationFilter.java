@@ -65,7 +65,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         .setExpiration(new Date(System.currentTimeMillis() + 60 * 60 * 24 * 1000)) // 设置过期时间
         .signWith(SignatureAlgorithm.HS512, "spring-security-@Jwt!&Secret^#") //采用什么算法是可以自己选择的，不一定非要采用HS512
         .compact();
-      System.out.println(token);
       res.addHeader("Authorization", "Bearer " + token);
       res.addHeader("access-control-expose-headers", "Authorization");
 

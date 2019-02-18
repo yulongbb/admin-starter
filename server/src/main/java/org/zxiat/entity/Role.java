@@ -12,11 +12,12 @@ public class Role {
 
   @Id
   @GeneratedValue
-  private Long id;
+  private Long id; // 角色ID
   private String name; // 角色名称
+  private String description; // 角色描述
 
   @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
-  private List<Permission> permissions;
+  private List<Permission> permissions;  // 角色权限
 
   public Role() {
   }
@@ -45,12 +46,11 @@ public class Role {
     this.permissions = permissions;
   }
 
-  @Override
-  public String toString() {
-    return "Role{" +
-      "id=" + id +
-      ", name='" + name + '\'' +
-      ", permissions=" + permissions +
-      '}';
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 }

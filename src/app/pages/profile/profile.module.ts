@@ -4,6 +4,7 @@ import { ProfileRoutingModule } from "./profile-routing.module";
 import { NotificationComponent } from "./notification/notification.component";
 import { ProfileComponent } from "./profile.component";
 import { OverviewComponent } from './overview/overview.component';
+import { AuthService } from "../auth/auth.service";
 
 @NgModule({
     imports: [
@@ -13,7 +14,10 @@ import { OverviewComponent } from './overview/overview.component';
     declarations: [
         ProfileComponent,
         NotificationComponent,
-        OverviewComponent
+        OverviewComponent,
     ],
+    providers: [
+        AuthService
+    ]
 })
 export class ProfileModule { }

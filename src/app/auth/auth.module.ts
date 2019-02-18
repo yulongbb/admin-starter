@@ -40,6 +40,7 @@ import { LogoutComponent } from './logout/logout.component';
           },
           token: {
             class: NbAuthJWTToken,
+
           }
         }),
       ],

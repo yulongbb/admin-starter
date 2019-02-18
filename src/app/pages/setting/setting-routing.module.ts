@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SettingComponent } from "./setting.component";
-import { ProfileSettingComponent } from "./profile-setting/profile-setting.component";
-import { AccountSettingComponent } from "./account-setting/account-setting.component";
-import { NotificationSettingComponent } from "./notification-setting/notification-setting.component";
+import { ProfileSettingComponent } from "./profile/profile.component";
+import { AccountSettingComponent } from "./account/account.component";
+import { NotificationSettingComponent } from "./notification/notification.component";
 
 
 

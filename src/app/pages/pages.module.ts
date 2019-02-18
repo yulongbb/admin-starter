@@ -10,6 +10,7 @@ import { ReferenceComponent } from './reference/reference.component';
 import { ExampleComponent } from './example/example.component';
 import { SettingModule } from "./setting/setting.module";
 import { AuthModule } from "./auth/auth.module";
+import { AuthService } from "./auth/auth.service";
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -32,7 +33,10 @@ const PAGES_COMPONENTS = [
   ],
   entryComponents: [
     ReferenceComponent,
-  ],
+  ], 
+  providers: [
+    AuthService
+  ]
 })
 export class PagesModule {
 }

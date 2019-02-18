@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../auth.service";
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -16,64 +17,84 @@ export class UserComponent implements OnInit {
   private columnDefs;
   private defaultColDef;
   private rowSelection;
-  private rowData: [];
+  private rowData: any[];
+  private paginationPageSize;
+  private paginationNumberFormatter;
+
+  deleteUsers: string;
+  action = "请选择";
 
 
   constructor(
     private authService: AuthService,
     private sanitizer: DomSanitizer,
+    private router: Router,
   ) {
     this.columnDefs = [
       {
         headerName: '用户名',
         field: 'username',
+        width: 200,
         sortable: true,
-        filter: true,
+        filter: "agTextColumnFilter",
         resizable: false,
         headerCheckboxSelection: true,
         headerCheckboxSelectionFilteredOnly: true,
         checkboxSelection: true,
         cellRenderer: this.customCellRendererFunc
       },
-      { headerName: '密码', field: 'password', sortable: true, filter: true, resizable: false },
-      { headerName: '名字', field: 'firstName', sortable: true, filter: true, resizable: false },
-      { headerName: '姓氏', field: 'lastName', sortable: true, filter: true, resizable: false },
-      { headerName: '有效', field: 'isActive', sortable: true, filter: true, resizable: false },
-      { headerName: '状态', field: 'state', sortable: true, filter: true, resizable: false },
-      { headerName: '角色', field: 'roles.0.name', sortable: true, filter: true, resizable: false },
-      { headerName: '上次登录', field: 'lastDate', sortable: true, filter: true, resizable: false },
+      { headerName: '密码', field: 'password', sortable: true, filter: "agTextColumnFilter", resizable: false },
+      { headerName: '姓名', field: 'name', sortable: true, filter: "agTextColumnFilter", resizable: false },
+      { headerName: '有效', field: 'active', sortable: true, filter: "agTextColumnFilter", resizable: false },
+      { headerName: '状态', field: 'state', sortable: true, filter: "agTextColumnFilter", resizable: false },
+      { headerName: '角色', field: 'roles.0.description', sortable: true, filter: "agTextColumnFilter", resizable: false },
     ];
     this.defaultColDef = {
       resizable: true,
       width: 100
     };
     this.rowSelection = "multiple";
-
+    this.paginationPageSize = 20;
   }
 
   ngOnInit() {
-
-  }
-
-  onRowSelected(event) {
-    // window.alert("row " + event.node.data.id + " selected = " + event.node.selected);
   }
 
   onSelectionChanged(event) {
-    // var rowCount = event.api.getSelectedNodes().length;
-    // window.alert("selection changed, " + rowCount + " rows selected");
+    this.deleteUsers = '';
+    for (var i = 0; i < event.api.getSelectedNodes().length; i++) {
+      this.deleteUsers += event.api.getSelectedNodes()[i].data.id + ',';
+    }
   }
 
 
+  /**
+   * 表格准备数据
+   * @param params
+   */
   onGridReady(params) {
     this.authService.getUsers().subscribe(response => {
       this.rowData = response;
     })
   }
 
+  onPageSizeChanged() {
+    this.authService.getUsers().subscribe(response => {
+      this.rowData = response;
+    })
+  }
+
+  executeAction() {
+    if (this.action == "批量删除") {
+      this.authService.deleteBatchUser(this.deleteUsers).subscribe(response => {
+        this.authService.getUsers().subscribe(response => {
+          this.rowData = response;
+        })
+      });
+    }
+  }
 
   public customCellRendererFunc(params): string {
-    console.log(params);
     return `<a href='/#/pages/auth/user/${params.data.id}/change'>${params.data.username}</a>`;
   }
 

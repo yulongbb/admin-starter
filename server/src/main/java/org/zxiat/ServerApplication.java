@@ -11,25 +11,13 @@ import org.zxiat.service.UserService;
 
 @SpringBootApplication
 @CrossOrigin("*")
-public class ServerApplication implements CommandLineRunner {
+public class ServerApplication{
 
   @Autowired
   UserService userService;
 
   public static void main(String[] args) {
     SpringApplication.run(ServerApplication.class, args);
-  }
-
-  @Override
-  public void run(String... arg0) throws Exception {
-
-    ClassPathResource avatar = new ClassPathResource("images/avatar.jpg");
-    byte[] arrayUser = new byte[(int) avatar.contentLength()];
-    avatar.getInputStream().read(arrayUser);
-    User user = new User(Long.parseLong("3"),"yulongbb","eszrdxtfc", arrayUser);
-
-    // store image to MySQL via SpringJPA
-    userService.addUser(user);
   }
 
 }

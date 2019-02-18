@@ -8,20 +8,28 @@
   </div>
   <div class="col-md-12">
     <nb-card>
+      <nb-card-header>
+        选择用户来修改
+        <button class="float-right btn btn-success btn-round btn-sm pt-1 pb-1" [routerLink]="['/pages/auth/user/add']">新增</button>
+      </nb-card-header>
       <nb-card-body>
-       <ag-grid-angular
-        #agGrid
-        style="width: 100%; height: 100%;"
-        id="myGrid"
-        class="ag-theme-balham"
-        [columnDefs]="columnDefs"
-        [suppressRowClickSelection]="true"
-        [rowSelection]="rowSelection"
-        [rowData]="rowData"
-        (rowSelected)="onRowSelected($event)"
-        (selectionChanged)="onSelectionChanged($event)"
-        (gridReady)="onGridReady($event)"
-      ></ag-grid-angular>
+        <label>操作:</label>
+        <select id="action" [(ngModel)]="action">
+          <option value="请选择">请选择...</option>
+          <option value="批量删除">批量删除</option>
+        </select>
+        <button (click)="executeAction()">执行</button>
+        <ag-grid-angular #agGrid style="width: 100%; height: 100%;" id="myGrid" class="ag-theme-balham" [columnDefs]="columnDefs"
+          [suppressRowClickSelection]="true" [rowSelection]="rowSelection" [rowData]="rowData" [animateRows]="true"
+          (selectionChanged)="onSelectionChanged($event)" [pagination]="true" [paginationPageSize]="paginationPageSize" [paginationNumberFormatter]="paginationNumberFormatter"
+          (gridReady)="onGridReady($event)"></ag-grid-angular>
+        <label>页数:</label>
+        <select (change)="onPageSizeChanged()" [(ngModel)]="paginationPageSize" id="page-size">
+          <option value="20" selected="">20</option>
+          <option value="100">100</option>
+          <option value="500">500</option>
+          <option value="1000">1000</option>
+        </select>
       </nb-card-body>
     </nb-card>
   </div>

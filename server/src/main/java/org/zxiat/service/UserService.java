@@ -16,4 +16,10 @@ public interface UserService {
   User getUserByUsername(String username);
 
   User addUser(User user);
+
+  User updateUser(User user);
+
+  void deleteUser(Long id);
+
+  void deleteBatchUser(List<Long> users);
 }

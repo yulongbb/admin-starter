@@ -20,6 +20,10 @@ export class SettingComponent implements OnInit {
     {
       title: '通知',
       link: '/pages/setting/notification',
+    },
+    {
+      title: '系统设置',
+      link: '/pages/setting/system',
     }
   ];
 

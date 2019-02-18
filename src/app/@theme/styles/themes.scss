@@ -94,4 +94,7 @@ $nb-themes: nb-register-theme((
   ecommerce-card-border-width: 1px,
 
   progress-bar-background: linear-gradient(90deg, #ff9f6f 0%, #ff8b97 100%),
+
+  form-control-border-width: 1px,
+  form-control-padding: 0.5rem 0.75rem,
 ), corporate, corporate);

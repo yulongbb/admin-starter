@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-md-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/pages/auth/role']">角色</a></li>
+         <li class="breadcrumb-item active" aria-current="page">{{description}}</li> 
+      </ol>
+    </nav>
+  </div>
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>
+        修改角色
+      </nb-card-header>
+      <nb-card-body>
+         <form [formGroup]="changeForm" (ngSubmit)="onSubmit(changeForm.value)">
+          <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">角色名</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="name" placeholder="角色名" [(ngModel)]="name" formControlName="name">
+            </div>
+          </div>
+          <hr>
+          <div class="form-group row">
+            <label for="description" class="col-sm-2 col-form-label">描述</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="description" placeholder="描述" [(ngModel)]="description" formControlName="description">
+            </div>
+          </div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-primary text-light">
+              <li class="breadcrumb-item">权限</li>
+            </ol>
+          </nav>
+          <div class="form-group row">
+            <label for="role" class="col-sm-2 col-form-label">配置权限</label>
+            <div class="col-sm-4">
+              <ng-select [items]="permissions" [multiple]="true" [closeOnSelect]="false" [searchable]="false" [selectableGroup]="true" [closeOnSelect]="false"
+                bindLabel="name" placeholder="配置角色" [(ngModel)]="selectedPermissions"  formControlName="selectedRoles">
+              </ng-select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="float-left">
+              <a (click)="deleteUser(user.id)" class="btn btn-danger text-light">删除</a>
+            </div>
+            <div class="float-right">
+              <button type="submit" class="btn btn-primary">保存</button>
+            </div>
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
